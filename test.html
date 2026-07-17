@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test tiny-fs-access</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    button { padding: 0.5rem 1rem; margin-right: 1rem; cursor: pointer; }
+    pre { background: #f0f0f0; padding: 1rem; margin-top: 1rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Test tiny-fs-access</h1>
+  <button id="btn-read">Read File</button>
+  <button id="btn-save">Save File</button>
+
+  <pre id="output">Output will appear here...</pre>
+
+  <script type="module">
+    import { openFile, saveFile } from './dist/index.mjs';
+
+    document.getElementById('btn-read').addEventListener('click', async () => {
+      try {
+        const text = await openFile({ returnType: 'text', types: [{ description: 'Text files', accept: { 'text/plain': ['.txt', '.md', '.json', '.html'] } }] });
+        document.getElementById('output').textContent = text;
+      } catch (err) {
+        console.error('Read aborted or failed:', err);
+      }
+    });
+
+    document.getElementById('btn-save').addEventListener('click', async () => {
+      try {
+        await saveFile('Hello from tiny-fs-access! This was saved directly to your disk.', { suggestedName: 'test.txt' });
+        alert('File saved successfully!');
+      } catch (err) {
+        console.error('Save aborted or failed:', err);
+      }
+    });
+  </script>
+</body>
+</html>
