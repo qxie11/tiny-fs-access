@@ -80,3 +80,29 @@ function App() {
 }
 ```
 
+### Vue 3 Composable
+
+We also provide a Vue 3 composable for seamless integration.
+
+```vue
+<script setup>
+import { useFileSystem } from 'tiny-fs-access/vue';
+
+const { open, save, loading, error } = useFileSystem();
+
+const handleOpen = async () => {
+  const text = await open({ returnType: 'text' });
+  console.log(text);
+};
+</script>
+
+<template>
+  <div>
+    <button @click="handleOpen" :disabled="loading">
+      {{ loading ? 'Reading...' : 'Open File' }}
+    </button>
+    <p v-if="error" style="color: red;">Error: {{ error.message }}</p>
+  </div>
+</template>
+```
+
