@@ -34,6 +34,14 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qxie11/tiny-fs-access.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qxie11/tiny-fs-access/issues"
+  },
+  "homepage": "https://github.com/qxie11/tiny-fs-access#readme",
   "peerDependencies": {
     "react": ">=16.8.0"
   },
